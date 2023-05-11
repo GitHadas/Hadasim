@@ -4,16 +4,15 @@ const getPatients = async () => {
 
   try {
     const patients = await PatientsModel.find({});
-    //const patientsWithVaccinations = await Promise.all(
-    //  patients.map(async (patient) => {
-    //    const vaccinations = await VaccinationsModel.find({ patient_id: patient._id });
-    //    console.log("getPatients");
-    //    return {
-    //      patient,
-    //      vaccinations,
-    //    };
-    //  })
-    //);
+    const patientsWithVaccinations = await Promise.all(
+      patients.map(async (patient) => {
+        const vaccinations = await VaccinationsModel.find({ patient_id: patient._id });
+        return {
+          patient,
+          vaccinations,
+        };
+      })
+    );
     return patientsWithVaccinations;
   } catch (error) {
     console.error(error);
