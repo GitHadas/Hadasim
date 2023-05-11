@@ -59,15 +59,15 @@ const addPatient = async (obj) => {
   }
 };
 
-const addVaccinationToPatient = async (patientID, vaccinationDate, vaccineManufacturer) => {
+const addVaccinationToPatient = async (patientId, vaccinationDate, vaccineManufacturer) => {
   try {
-    const patient = await PatientsModel.findById(patientID);
+    const patient = await PatientsModel.findById(patientId);
     if (!patient) {
       throw new Error("Patient not found");
     }
 
     const vaccination = new VaccinationsModel({
-      patient: patientID,
+      patient: patientid,
       vaccine_date: vaccinationDate,
       vaccine_manufacturer: vaccineManufacturer,
     });
