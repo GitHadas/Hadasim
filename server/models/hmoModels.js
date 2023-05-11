@@ -22,15 +22,10 @@ const PatientsSchema = new mongoose.Schema({
 
 // Define Vaccinations schema
 const VaccinationsSchema = new mongoose.Schema({
-  patient_id: {
+  patient: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Patients",
     required: true,
-  },
-  patient_id: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Patients",
-    required: true
   },
   vaccine_date: Date,
   vaccine_manufacturer: String

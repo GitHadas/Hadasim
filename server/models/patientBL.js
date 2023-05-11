@@ -1,12 +1,11 @@
 const { PatientsModel, VaccinationsModel } = require("./hmoModels");
 
 const getPatients = async () => {
-
   try {
     const patients = await PatientsModel.find({});
     const patientsWithVaccinations = await Promise.all(
       patients.map(async (patient) => {
-        const vaccinations = await VaccinationsModel.find({ patient_id: patient._id });
+        const vaccinations = await VaccinationsModel.find({ patient: patient._id });
         return {
           patient,
           vaccinations,
@@ -26,7 +25,7 @@ const getPatient = async (ID) => {
     if (!patient) {
       throw new Error("Patient not found");
     }
-    const vaccinations = await VaccinationsModel.find({ patient_id: patient._id });
+    const vaccinations = await VaccinationsModel.find({ patient: patient._id });
     return {
       patient,
       vaccinations,
@@ -68,7 +67,7 @@ const addVaccinationToPatient = async (patientID, vaccinationDate, vaccineManufa
     }
 
     const vaccination = new VaccinationsModel({
-      patient_id: patientID,
+      patient: patientID,
       vaccine_date: vaccinationDate,
       vaccine_manufacturer: vaccineManufacturer,
     });

@@ -19,4 +19,3 @@ mongoose.connect("mongodb+srv://admin:SJixOMWo2WtPbnYp@cluster0.euncorb.mongodb.
   });
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/patients", PatientRouter);
-
